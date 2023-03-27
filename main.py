@@ -1,8 +1,14 @@
-from flask import Flask
-import routes
+from flask import Flask, render_template
+
+from auth import auth
 
 app = Flask(__name__)
-app.register_blueprint(routes.bp)
+app.register_blueprint(auth)
+
+
+@app.route('/')
+def home():
+    return render_template('pages/index.html')
 
 
 if __name__ == '__main__':
