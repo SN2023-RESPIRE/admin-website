@@ -1,11 +1,8 @@
 from flask import Flask
+import routes
 
 app = Flask(__name__)
-
-
-@app.route('/')
-def hello():
-    return "<h1>HAI WORLD</h1><h6>kthxbye</h6>"
+app.register_blueprint(routes.bp)
 
 
 if __name__ == '__main__':
