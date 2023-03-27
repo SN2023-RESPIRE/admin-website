@@ -2,13 +2,18 @@ import os
 
 from dotenv import load_dotenv
 from flask import Flask
+from flask_login import LoginManager
 from db import db
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 def create_app():
     load_dotenv()
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///auth.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] =\
+        'sqlite:///' + os.path.join(basedir, 'auth.db')
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
     from auth import auth
@@ -19,6 +24,17 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         db.create_all()
+
+    login_manager = LoginManager()
+    login_manager.login_view = 'auth.login'
+    login_manager.init_app(app)
+
+    from models import User
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
     return app
 
 

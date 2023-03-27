@@ -5,21 +5,23 @@
 
 {% block content %}
     <div class="mb-3"></div>
-    {% if wrong_login %}
+    {% with messages = get_flashed_messages() %}
+    {% for msg in messages %}
         <div class="alert alert-danger" role="alert">
-            Wrong credentials entered. Try again
+            {{ msg }}
         </div>
-    {% endif %}
+    {% endfor %}
+    {% endwith %}
 
     <h1 class="text-center mt-3">LOGIN</h1>
     <form action="/login" method="post">
         <div class="mb-3">
             <label for="loginUsername" class="form-label">Username</label>
-            <input type="text" class="form-control" id="loginUsername">
+            <input type="text" class="form-control" id="loginUsername" name="username">
         </div>
         <div class="mb-3">
             <label for="loginPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="loginPassword">
+            <input type="password" class="form-control" id="loginPassword" name="password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
