@@ -1,6 +1,6 @@
 import getpass
 
-from db import db
+from db import user_db
 from main import create_app
 from models import User
 from werkzeug.security import generate_password_hash
@@ -28,7 +28,7 @@ if password != password2:
 user = User(name=name, username=username, password=generate_password_hash(password, method='sha256'))
 app = create_app()
 with app.app_context():
-    db.session.add(user)
-    db.session.commit()
+    user_db.session.add(user)
+    user_db.session.commit()
 
 print("User created successfully")

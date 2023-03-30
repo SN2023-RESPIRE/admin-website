@@ -3,5 +3,59 @@
 {% block title %}Index page{% endblock %}
 
 {% block content %}
-    <h1>HELLO WORLD :DDDD</h1>
+    <h1 class="text-center">Management Portal</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Last recorded value</th>
+                <th scope="col">Current threshold</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">VOC</th>
+                <td>{{ air_data['voc'] }} ppb</td>
+                <td>{{ thresholds['voc'] }} ppb</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+            <tr>
+                <th scope="row">CO2</th>
+                <td>{{ air_data['co2'] }} ppm</td>
+                <td>{{ thresholds['co2'] }} ppm</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+            <tr>
+                <th scope="row">PM1</th>
+                <td>{{ air_data['pm1'] }} µg/m3</td>
+                <td>{{ thresholds['pm1'] }} µg/m3</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+            <tr>
+                <th scope="row">PM2.5</th>
+                <td>{{ air_data['pm2'] }} µg/m3</td>
+                <td>{{ thresholds['pm2'] }} µg/m3</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+            <tr>
+                <th scope="row">PM10</th>
+                <td>{{ air_data['pm10'] }} µg/m3</td>
+                <td>{{ thresholds['pm10'] }} µg/m3</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Temperature</th>
+                <td>{{ air_data['temperature'] }} °C</td>
+                <td>{{ thresholds['temperature'] }} °C</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+            <tr>
+                <th scope="row">Humidity</th>
+                <td>{{ air_data['humidity'] }} %</td>
+                <td>{{ thresholds['humidity'] }} %</td>
+                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}

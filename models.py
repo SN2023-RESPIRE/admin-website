@@ -1,10 +1,10 @@
 from flask_login import UserMixin
 
-from db import db
+from db import user_db
 
 
-class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(32), unique=True)
-    password = db.Column(db.String(128))
-    name = db.Column(db.String(128))
+class User(UserMixin, user_db.Model):
+    id = user_db.Column(user_db.Integer, primary_key=True)
+    username = user_db.Column(user_db.String(32), unique=True)
+    password = user_db.Column(user_db.String(128))
+    name = user_db.Column(user_db.String(128))

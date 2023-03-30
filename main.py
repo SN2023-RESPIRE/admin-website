@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_login import LoginManager
-from db import db
+from db import user_db
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -21,9 +21,9 @@ def create_app():
     from home import home
     app.register_blueprint(home)
 
-    db.init_app(app)
+    user_db.init_app(app)
     with app.app_context():
-        db.create_all()
+        user_db.create_all()
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
