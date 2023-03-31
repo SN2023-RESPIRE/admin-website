@@ -18,43 +18,43 @@
                 <th scope="row">VOC</th>
                 <td>{{ air_data['voc'] }} ppb</td>
                 <td>{{ thresholds['voc'] }} ppb</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='voc') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
             <tr>
                 <th scope="row">CO2</th>
                 <td>{{ air_data['co2'] }} ppm</td>
                 <td>{{ thresholds['co2'] }} ppm</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='co2') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
             <tr>
                 <th scope="row">PM1</th>
                 <td>{{ air_data['pm1'] }} µg/m3</td>
                 <td>{{ thresholds['pm1'] }} µg/m3</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='pm1') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
             <tr>
                 <th scope="row">PM2.5</th>
                 <td>{{ air_data['pm2'] }} µg/m3</td>
                 <td>{{ thresholds['pm2'] }} µg/m3</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='pm2') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
             <tr>
                 <th scope="row">PM10</th>
                 <td>{{ air_data['pm10'] }} µg/m3</td>
                 <td>{{ thresholds['pm10'] }} µg/m3</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='pm10') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
             <tr>
                 <th scope="row">Temperature</th>
                 <td>{{ air_data['temperature'] }} °C</td>
                 <td>{{ thresholds['temperature'] }} °C</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='temperature') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
             <tr>
                 <th scope="row">Humidity</th>
                 <td>{{ air_data['humidity'] }} %</td>
                 <td>{{ thresholds['humidity'] }} %</td>
-                <td><a href="#" class="btn btn-warning btn-sm">Edit threshold</a></td>
+                <td><a href="{{ url_for('home.edit_threshold', type='humidity') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
         </tbody>
     </table>
