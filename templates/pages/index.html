@@ -14,43 +14,43 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr id="voc" unit="ppb">
                 <th scope="row">VOC</th>
                 <td>{{ air_data['voc'] }} ppb</td>
                 <td>{{ thresholds['voc'] }} ppb</td>
                 <td><a href="{{ url_for('home.edit_threshold', type='voc') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
-            <tr>
+            <tr id="co2" unit="ppm">
                 <th scope="row">CO2</th>
                 <td>{{ air_data['co2'] }} ppm</td>
                 <td>{{ thresholds['co2'] }} ppm</td>
                 <td><a href="{{ url_for('home.edit_threshold', type='co2') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
-            <tr>
+            <tr id="pm1" unit="µg/m3">
                 <th scope="row">PM1</th>
                 <td>{{ air_data['pm1'] }} µg/m3</td>
                 <td>{{ thresholds['pm1'] }} µg/m3</td>
                 <td><a href="{{ url_for('home.edit_threshold', type='pm1') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
-            <tr>
+            <tr id="pm2" unit="µg/m3">
                 <th scope="row">PM2.5</th>
                 <td>{{ air_data['pm2'] }} µg/m3</td>
                 <td>{{ thresholds['pm2'] }} µg/m3</td>
                 <td><a href="{{ url_for('home.edit_threshold', type='pm2') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
-            <tr>
+            <tr id="pm10" unit="µg/m3">
                 <th scope="row">PM10</th>
                 <td>{{ air_data['pm10'] }} µg/m3</td>
                 <td>{{ thresholds['pm10'] }} µg/m3</td>
                 <td><a href="{{ url_for('home.edit_threshold', type='pm10') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
-            <tr>
+            <tr id="temperature" unit="°C">
                 <th scope="row">Temperature</th>
                 <td>{{ air_data['temperature'] }} °C</td>
                 <td>{{ thresholds['temperature'] }} °C</td>
                 <td><a href="{{ url_for('home.edit_threshold', type='temperature') }}" class="btn btn-warning btn-sm">Edit threshold</a></td>
             </tr>
-            <tr>
+            <tr id="humidity" unit="%">
                 <th scope="row">Humidity</th>
                 <td>{{ air_data['humidity'] }} %</td>
                 <td>{{ thresholds['humidity'] }} %</td>
@@ -58,4 +58,32 @@
             </tr>
         </tbody>
     </table>
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+    <script>
+    function loop() {
+        $.ajax({
+            url: "api/air/data/",
+            success: function(data) {
+                $('tr:not(:first)').each(function() {
+                    $($(this).children()[1]).html(data[$(this).attr('id')] + ' ' + $(this).attr('unit'));
+                });
+            }
+        });
+        $.ajax({
+            url: "api/air/thresholds/",
+            success: function(data) {
+                $('tr:not(:first)').each(function() {
+                    $($(this).children()[2]).html(data[$(this).attr('id')] + ' ' + $(this).attr('unit'));
+                });
+            }
+        });
+        console.log("loop de loop");
+        setTimeout(loop, 5000);
+    }
+
+    setTimeout(loop, 5000);
+    </script>
 {% endblock %}

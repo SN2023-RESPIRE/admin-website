@@ -7,11 +7,20 @@ home = Blueprint('home', __name__)
 
 
 @home.route('/')
-@login_required
 def homepage():
     return render_template('pages/index.html',
                            air_data=get_current_air_data(),
                            thresholds=get_thresholds())
+
+
+@home.get('/api/air/data/')
+def api_get_air_data():
+    return get_current_air_data()
+
+
+@home.get('/api/air/thresholds/')
+def api_get_thresholds():
+    return get_thresholds()
 
 
 @home.route('/edit/<type>', methods=['GET'])
